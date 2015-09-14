@@ -1,0 +1,9 @@
+@CHARSET "ISO-8859-1";
+BODY {font-family: "Gill Sans MS", "Gill Sans", Tahoma, sans-serif; font-size: 11pt; font-weight: bold}
+A.close {background: #ff0000; color: #ffffff; font-size: 16px; font-weight: bold; padding: 12px;}
+A {color: #8282e0; text-decoration: none;}
+TABLE {padding-left: 12px; padding-right: 12px}
+
+.title {color: #4090c0; font-size: 16pt; padding-top: 0px; margin-top: 0px}
+.blurb {color: #202030; font-size: 12pt; padding-left: 12px; padding-right: 12px}
+.licenceBlurb {color: #ff0000; font-size: 12pt; padding-left: 12px; padding-right: 12px}

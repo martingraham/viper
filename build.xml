@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Pedigree" basedir="." 
+	xmlns:ivy="antlib:org.apache.ivy.ant" 
+	xmlns:doxygen="antlib:org.doxygen.tools">
+
+	
+<!-- compiler properties -->	
+<property name="classVersion" value="1.6"/>
+<property name="verbosity" value="false"/>
+<property name="debugClassFiles" value="on"/>
+	
+<!-- javac properties -->	
+<property name="myjvmargs" value=""/>	
+	
+<!-- project properties -->
+<property name="version" value="1.0"/>
+	
+<!-- jar file construction properties -->	
+<property name="jarFileName" value="${ant.project.name}-${version}"/>
+<property name="jarCompress" value="false"/>
+<property name="defaultMainClass" value="napier.pedigree.Test"/>
+<property name="manifestClassPath" value="."/>	
+<property name="dataset" value="distData"/>
+	
+<!-- jar signing properties in separate property file -->	
+<property file="jarsign.properties"/>
+
+<available file="${jarsign.keystore}" property="keystoreExists" />
+<available file="${lib}" property="libExists"/>
+<available file="${distData}" property="distDataExists"/>
+	
+<!-- jnlp construction properties - requires ant-contrib orangevolt task library -->	
+<property name="jnlpFilename" value="${ant.project.name}.jnlp"/>	
+<property name="jnlpCodebase" value="http://www.dcs.napier.ac.uk/~marting/Pedigree"/>
+<property name="jnlpApplet" value="false"/>	
+<property name="jnlpAppletClass" value="napier.pedigree.Test"/>
+<property name="jnlpOneLineDescription" value="Pedigree Viewer"/>
+<property name="jnlpVendor" value="CISS Group, Napier University &amp; Roslin, Edinburgh University"/>
+	
+
+<import file="core-build.xml" />
+	
+	
+<!-- lib folder files as a convenience fileset -->
+<fileset id="libjars" dir="${lib}">
+	<include name="*.jar" />
+</fileset>
+	
+
+	
+
+
+	
+<target name="ivyInstallRetrieve" depends="ivyInstall, ivyRetrieve" description="--> chain ivy install and retrieve operations"/>	
+	
+<target name="ivyInstall" description="--> retrieve files from well formatted ivy repositories with dependencies">
+	<ivy:install organisation="log4j" module="log4j" revision="1.2.16" from="${fromResolver}" to="${toResolver}" transitive="false" overwrite="true" haltonfailure="false"/>
+	<!-- <ivy:install organisation="org.resspecies" module="resspecies-inheritance" revision="2.02" from="${fromResolver}" to="${toResolver}" transitive="true" overwrite="true" haltonfailure="false"/> -->
+	<ivy:install organisation="org.resspecies" module="resspecies-lw-inheritance" revision="1.06" from="${fromResolver}" to="${toResolver}" transitive="true" overwrite="true" haltonfailure="false"/>
+	<ivy:install organisation="org.resspecies" module="resspecies-model" revision="1.1" from="${fromResolver}" to="${toResolver}" transitive="true" overwrite="true" haltonfailure="false"/>
+	<ivy:install organisation="org.resspecies" module="resspecies-datasourceaware" revision="1.2" from="${fromResolver}" to="${toResolver}" transitive="true" overwrite="true" haltonfailure="false"/>
+	<ivy:install organisation="napier" module="JSwingPlus" revision="1.0" from="${fromResolver}" to="${toResolver}" transitive="true" overwrite="true" haltonfailure="false"/>
+</target>
+	
+
+</project>

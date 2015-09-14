@@ -1,0 +1,40 @@
+<ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven">
+
+	<info organisation="napier" module="pedigree" revision="1.0" status="integration"
+			publication="20100922120000"
+	/>
+	
+ 
+	<configurations>
+  		<conf name="default" visibility="public" description="runtime dependencies and master artifact can be used with this conf" extends="runtime" /> 
+  		<conf name="compile" visibility="public"  description="this is the default scope, used if none is specified. Compile dependencies are available in all classpaths." /> 
+  		<conf name="runtime" visibility="public"  description="this scope indicates that the dependency is not required for compilation, but is for execution. It is in the runtime and test classpaths, but not the compile classpath." extends="compile" /> 
+  		<conf name="test" visibility="private" description="this scope indicates that the dependency is not required for normal use of the application, and is only available for the test compilation and execution phases." extends="runtime" /> 
+	  	<conf name="sources" visibility="public" description="this configuration contains the source artifact of this module, if any" /> 
+	</configurations>
+	
+	<publications> 
+    	<artifact name="Pedigree" type="jar" ext="jar"/> 
+	    <artifact name="Pedigree" type="source" ext="jar" m:classifier="sources"/> 	
+	</publications>
+	
+	<dependencies>
+		<!--  conf runtime avoids downloading source files into lib folder on retrieve -->
+		<dependency org="log4j" name="log4j" rev="1.2.16" conf="*->runtime,sources,javadoc,master"/>
+		<dependency org="napier" name="JSwingPlus" rev="1.0" conf="*->runtime,sources,master" transitive="true"/>
+		<dependency org="commons-collections" name="commons-collections" rev="3.2" conf="*->runtime,sources,master" transitive="true"/>
+		<!-- <dependency org="javaewah" name="javaewah" rev="0.3" conf="*->runtime,sources,master" transitive="true"/> -->
+
+		<!-- <dependency org="org.resspecies" name="resspecies-inheritance" rev="2.02" conf="default->compile,master,sources,javadoc" transitive="true"/> -->
+		<dependency org="org.resspecies" name="resspecies-lw-inheritance" rev="1.06" conf="default->compile,master,sources,javadoc" transitive="true"/>
+		<dependency org="org.resspecies" name="resspecies-datasourceaware" rev="1.2" conf="default->sources,javadoc"/>
+		<dependency org="org.resspecies" name="resspecies-datasourceaware-interface" rev="1.1" conf="default->sources,javadoc"/>
+		<dependency org="org.resspecies" name="resspecies-model" rev="1.1" conf="default->sources,javadoc"/>
+							
+		<exclude org="com.sun.jmx" module="jmxri"/>
+		<exclude org="com.sun.jdmk" module="jmxtools"/>
+		<exclude org="javax.jms" module="jms"/>
+		<exclude org="javax.activation" module="activation"/>
+		<exclude org="javax.mail" module="mail"/>
+	</dependencies>
+</ivy-module>

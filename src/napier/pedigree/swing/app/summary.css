@@ -1,0 +1,8 @@
+@CHARSET "ISO-8859-1";
+BODY {font-family: "Gill Sans MS", "Gill Sans", Tahoma, sans-serif; font-size: 11pt;}
+P {margin: 0px; padding: 0px; display: inline}
+.value {font-size: 12pt; color: #202020; font-weight: bold}
+.datalabel {color:#606060}
+.heading {color:#606060; font-weight:bold}
+img {margin: 6px; padding: 6px; border: 4px solid orange; background: #202020}
+
